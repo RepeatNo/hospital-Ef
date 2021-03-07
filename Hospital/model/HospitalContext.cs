@@ -39,6 +39,10 @@ namespace Hospital{
                 .HasOne(l => l.Ward)
                 .WithMany()
                 .HasForeignKey(l => l.WardId);
+
+            modelBuilder.Entity<Ward>()
+                .HasOne(w => w.Leader)
+                .WithMany();
         }
     }
 }

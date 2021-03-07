@@ -18,5 +18,8 @@ namespace Hospital.model{
         public int CarryingCapacity{ get; set; }
 
         public Physician Leader{ get; set; }
+        
+        [ForeignKey("HOSPITAL_FACILITY_ID")] 
+        public HospitalFacility HospitalFacility_ID{ get; set; }
     }
 }

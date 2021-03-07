@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hospital.model{
     [Table("WARDS_HAS_EMPLOYEES")]
@@ -12,6 +13,7 @@ namespace Hospital.model{
         public Employee Employee{ get; set; }
         public Ward Ward{ get; set; }
 
+        [Required]
         [Column("WORKING_HOURS", TypeName = "INT")]
         public int WorkingHours{ get; set; }
     }
