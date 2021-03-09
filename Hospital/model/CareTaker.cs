@@ -3,8 +3,11 @@
 namespace Hospital.model{
     [Table("CARE_TAKERS")]
     public class CareTaker:Employee{
-        [ForeignKey("SUPERVISOR")]
-        public CareTaker Supervisor { get; set; }
-        
+
+        public CareTaker Superior { get; set; }
+
+        [Column("SUPERIOR_ID")]
+        public int? SuperiorId{ get; set; }
+
     }
 }

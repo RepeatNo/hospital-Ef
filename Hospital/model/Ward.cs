@@ -18,8 +18,12 @@ namespace Hospital.model{
         public int CarryingCapacity{ get; set; }
 
         public Physician Leader{ get; set; }
-        
-        [ForeignKey("HOSPITAL_FACILITY_ID")] 
-        public HospitalFacility HospitalFacility_ID{ get; set; }
+
+        [Column("LEADER_ID")]
+        public int? LeaderId{ get; set; }
+
+        public HospitalFacility HospitalFacility{ get; set; }
+        [Column("FACILITY_ID")]
+        public int FacilityId{ get; set; }
     }
 }

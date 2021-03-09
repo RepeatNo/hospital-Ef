@@ -7,6 +7,7 @@ namespace Hospital{
         public DbSet<Physician> Physicians { get; set; }
         public DbSet<CareTaker> CareTakers{ get; set; }
         public DbSet<HospitalFacility> HospitalFacilities{ get; set; }
+        public DbSet<Ward> Wards{ get; set; }
         public DbSet<WardsHasEmployee> WardsHasEmployees{ get; set; }
         public HospitalContext(DbContextOptions<HospitalContext> options) : base(options){}
 
@@ -16,8 +17,9 @@ namespace Hospital{
                 .IsUnique();
 
             modelBuilder.Entity<CareTaker>()
-                .HasOne(x => x.Supervisor)
-                .WithMany();
+                .HasOne(x => x.Superior)
+                .WithMany()
+                .HasForeignKey(c => c.SuperiorId);
             
             modelBuilder.Entity<HospitalFacility>()
                 .HasIndex(d => d.Name)
@@ -42,7 +44,13 @@ namespace Hospital{
 
             modelBuilder.Entity<Ward>()
                 .HasOne(w => w.Leader)
-                .WithMany();
+                .WithOne()
+                .HasForeignKey<Ward>(w => w.LeaderId);
+            
+            modelBuilder.Entity<Ward>()
+                .HasOne(w => w.HospitalFacility)
+                .WithOne()
+                .HasForeignKey<Ward>(w => w.FacilityId);
         }
     }
 }
